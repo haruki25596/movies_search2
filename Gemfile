@@ -69,3 +69,4 @@ gem "refile-mini_magick"
 gem 'jquery-rails'
 gem 'bootstrap', '~> 4.1.1'
 gem 'font-awesome-sass', '~> 5.12.0'
+gem 'themoviedb-api', '~> 1.3'

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'movies/search'
+  get 'movies/show'
   get 'users/show'
   devise_for :users
   resources :users, only: [:index, :show, :edit, :update] do

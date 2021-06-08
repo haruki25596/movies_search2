@@ -1,0 +1,10 @@
+<div>
+　<%= button_to 'Good', review_good_path(@review), class:'good-btn' %>
+</div>
+
+<div>
+　<%= button_to 'Bad', review_bad_path(@review), class:'bad-btn' %>
+</div>
+
+<div class="good-button"><%= @goods_count%></div>　   <!--Good評価-->
+<div class="bad-button2"><%= @bads_count%></div>  <!--Bad評価-->

@@ -1,30 +1,58 @@
-<table class='table table-hover table-inverse'>
-  <thead>
-    <tr>
-      <th></th>
-      <th>Title</th>
-      <th>Opinion</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% books.each do |book| %>
-      <tr>
-        <td><%= link_to user_path(book.user) do %>
-          <%= attachment_image_tag(book.user, :profile_image, :fill, 50, 50, fallback: "no-image-icon.jpg") %>
-          <% end %>
-        </td>
-        <td><%= link_to book.title, book_path(book.id), class: "book_#{book.id}" %></td>
-        <td><%= book.body %></td>
-        <td id="favorite-btn_<%= book.id %>">
-            <%= render 'favorites/favorite-btn', book: book %>
-        </td>
-        <td><div class="comments">
-             <p>コメント件数：<%= book.book_comments.count %></p>
+<%# if !user_signed_in? %>
+  <div class="jumbotron">
+    <h1>映画をレビューしよう</h1>
+    <p>お気に入りの映画を探してレビューしよう！</p>
+    <p><%= link_to "会員登録して映画をレビューする", new_user_registration_path, class: "btn btn-primary btn-lg" %></p>
+  </div>
+  <h1>映画検索</h1>
+  <%= form_with url: post_keyward_path, method: :get, local: true do |form| %>
+    <%= form.text_field :keyword %>
+    <%= form.submit %>
+  <% end %>
 
+<div class="row">
+  <% @movies.each do |movie| %>
+    <div class="col-sm-6 col-md-3">
+      <div class="thumbnail">
+        <tr>
+          <td><%= link_to movie.title, movie_path(movie.id), class: "movie_#{movie.id}" %></td>
+          <td><%= movie.body %></td>
+        </tr>
+
+        <tr>
+          <td><div class="comments">
+            <p>コメント件数：<%= book.book_comments.count %></p>
+
+              </div>
+          </td>
+        </tr>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+
+    <% movieinfo = @tmdbs %>
+    <% i = 0 %>
+    <div class="card-wrapper">
+        <% while i < movieinfo['table']['results'].count %>
+            <div class="card">
+                <div class="card-upperinfo">
+
+                    <%if movieinfo['table']['results'][i]['table']['title'].present?%>
+                        <h3><%= link_to movieinfo['table']['results'][i]['table']['title'],movies_show_path(movieinfo['table']['results'][i]['table']['id']) %></h3>
+                    <%end%>
+
+                    <% if movieinfo['table']['results'][i]['table']['release_date'].present? %>
+                        <p class="release-date"><%= movieinfo['table']['results'][i]['table']['release_date'] %></p>
+                    <%end%>
+                </div>
+
+
+                <% if movieinfo['table']['results'][i]['table']['poster_path'].present? %>
+                    <p><%= image_tag 'https://image.tmdb.org/t/p/w1280' + movieinfo['table']['results'][i]['table']['poster_path'],class: "card-img" %></p>
+                <%end%>
             </div>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+            <% i += 1%>
+        <%end%>
+    </div>

@@ -71,3 +71,8 @@ gem 'bootstrap', '~> 4.1.1'
 gem 'font-awesome-sass', '~> 5.12.0'
 gem 'themoviedb-api', '~> 1.3'
 gem 'ransack'
+
+gem 'dotenv-rails'
+group :production do
+  gem 'mysql2'
+end

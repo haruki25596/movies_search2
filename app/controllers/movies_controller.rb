@@ -18,7 +18,12 @@ class MoviesController < ApplicationController
   end
 
   def search
-    @tmdbs= JSON.parse(Tmdb::Search.movie(params[:keyword]).to_json)
+    @movies = Movie.all
+    if params[:keyword].present?
+      @tmdbs= JSON.parse(Tmdb::Search.movie(params[:keyword]).to_json)
+    else
+      @tmdbs = JSON.parse(Tmdb::Movie.upcoming.to_json)
+    end
   end
 
   def set_q
@@ -29,9 +34,9 @@ class MoviesController < ApplicationController
     @movie = Movie.find(params[:id])
     @tmdb = JSON.parse(Tmdb::Movie.movie(params[:id]).to_json)
   end
-  
+
   def movie_params
       params.require(:movie).permit(:title, :body, :user_id)
   end
-  
+
 end

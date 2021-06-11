@@ -1,15 +1,17 @@
 Rails.application.routes.draw do
+
+  devise_for :users
   root 'movies#index'
-  get 'reviews/index'
-  get 'reviews/show'
   get 'movies/search'
   get 'movies/show'
-  get 'users/show'
-  devise_for :users
   get '/movies', to: "movies#index", as: :post_keyward
-  resources :users, only: [:index, :show, :edit, :update] do
-    resource :relationships, only: [:create, :destroy]
-  end
+
+  post 'follow/:id' => 'relationships#follow', as: 'follow' # フォローする
+  post 'unfollow/:id' => 'relationships#unfollow', as: 'unfollow' # フォロー外す
+  get 'users/:id/follower'=> 'users#follower', as: 'follower_user'
+  get 'users/:id/followed'=> 'users#followed', as: 'followed_user'
+
+  resources :users, only: [:index, :show, :edit, :update]
 
   resources :reviews, only: [:new, :create, :index, :show, :destroy] do
     resources :post_comments, only: [:create, :destroy]

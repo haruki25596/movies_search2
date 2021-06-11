@@ -1,38 +1,5 @@
 <%# if !user_signed_in? %>
-  <div class="jumbotron">
-    <h1>映画をレビューしよう</h1>
-    <p>お気に入りの映画を探してレビューしよう！</p>
-    <p><%= link_to "会員登録して映画をレビューする", new_user_registration_path, class: "btn btn-primary btn-lg" %></p>
-  </div>
-  <h1>映画検索</h1>
-  <%= form_with url: post_keyward_path, method: :get, local: true do |form| %>
-    <%= form.text_field :keyword %>
-    <%= form.submit %>
-  <% end %>
-
-<div class="row">
-  <% @movies.each do |movie| %>
-    <div class="col-sm-6 col-md-3">
-      <div class="thumbnail">
-        <tr>
-          <td><%= link_to movie.title, movie_path(movie.id), class: "movie_#{movie.id}" %></td>
-          <td><%= movie.body %></td>
-        </tr>
-
-        <tr>
-          <td><div class="comments">
-            <p>コメント件数：<%= book.book_comments.count %></p>
-
-              </div>
-          </td>
-        </tr>
-      </div>
-    </div>
-  <% end %>
-</div>
-
-
-    <% movieinfo = @tmdbs %>
+ <% movieinfo = @tmdbs %>
     <% i = 0 %>
     <div class="card-wrapper">
         <% while i < movieinfo['table']['results'].count %>

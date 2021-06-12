@@ -31,8 +31,9 @@ class MoviesController < ApplicationController
   end
 
   def show
-    @movie = Movie.find(params[:id])
-    @tmdb = JSON.parse(Tmdb::Movie.movie(params[:id]).to_json)
+    #@movie = Movie.find(params[:id])
+    @movie = Tmdb::Movie.detail(params[:id])
+    #@tmdb = JSON.parse(Tmdb::Movie.movie(params[:id]).to_json)
   end
 
   def movie_params

@@ -1,2 +1,39 @@
-<p class="release-date"><%= movieinfo['table']['results'][i]['table']['release_date'] %></p>
-<p><%= image_tag 'https://image.tmdb.org/t/p/w1280' + movieinfo['table']['results'][i]['table']['poster_path'],class: "card-img" %></p>
+<div class="container">
+  <h2 class="mt-5">作品詳細</h2>
+  <div class="row">
+    <div class="mt-5 col-md-5">
+        <span><%= image_tag 'https://image.tmdb.org/t/p/w1280' + @movie['poster_path'],class: "card-img" %></sapn>
+    </div>
+
+
+  <div class="mt-5 col-md-5">
+        <div class="row">
+          <p class="col-md-4 admin-item-title">製作時期:</p>
+          <p class="col-md-8"><%= @movie['release_date'] %></p>
+        </div>
+
+        <div class="row">
+          <p class="col-md-4">作品タイトル:</p>
+          <p class="col-md-8"><%= @movie['title'] %></p>
+        </div>
+
+        <div class="row">
+          <p class="col-md-4">あらすじ:</p>
+          <p class="col-md-8"><%= @movie['overview'] %></p>
+        </div>
+        
+        <div class="row">
+　        <p class="col-md-1">
+　          <%= button_to 'Good', reviews_goods_path, class:'good-btn' %>
+　          <%= button_to 'Bad', reviews_bads_path, class:'bad-btn' %>
+          </p>
+        </div>
+        
+        
+
+        <div class="row">
+          <p class="col-md-8"><%= link_to "他の作品を探す", search_movies_path, class: "btn btn-success btn-lg pull-right" %></p>
+        </div>
+    </div>
+  </div>
+</div>

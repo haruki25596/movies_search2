@@ -4,22 +4,22 @@
     <div class='col-md-6 offset-md-8'>
 
         <h2>映画検索</h2>
-          <%= form_with url: post_keyward_path, method: :get, local: true do |form| %>
+          <%= form_with url: search_movies_path, method: :get, local: true do |form| %>
             <%= form.text_field :keyword %>
             <%= form.submit '検索'%>
           <% end %>
 
         <%# 検索された時にコンテンツを表示する %>
-        <%if params[:looking_for].present? %>
-            <% movieinfo = JSON.parse((Tmdb::Search.movie(params[:looking_for])).to_json) %>
-            <h2><%= params[:looking_for] %>の検索結果</h2>
+        <%if params[:keyword].present? %>
+            <% movieinfo = JSON.parse((Tmdb::Search.movie(params[:keyword])).to_json) %>
+            <h2><%= params[:keyword] %>の検索結果</h2>
             <% i = 0 %>
             <div class="card-wrapper">
                 <% while i < movieinfo['table']['results'].count %>
                     <div class="card">
                         <div class="card-upperinfo">
                             <%if movieinfo['table']['results'][i]['table']['title'].present?%>
-                                <h3><%= link_to movieinfo['table']['results'][i]['table']['title'],(movieinfo['table']['results'][i]['table']['id']) %></h3>
+                                <h3><%= link_to movieinfo['table']['results'][i]['table']['title'],movie_path(movieinfo['table']['results'][i]['table']['id']) %></h3>
                             <%end%>
 
                             <% if movieinfo['table']['results'][i]['table']['release_date'].present? %>
@@ -45,7 +45,7 @@
                     <div class="card">
                         <div class="card-upperinfo">
                             <%if movieinfo['table']['results'][i]['table']['title'].present?%>
-                                <h3><%#= link_to movieinfo['table']['results'][i]['table']['title'], movies_show_path(movieinfo['table']['results'][i]['table']['id'])%></h3>
+                                <h3><%#= link_to movieinfo['table']['results'][i]['table']['title'], movie_path(movieinfo['table']['results'][i]['table']['id'])%></h3>
                             <%end%>
 
                             <% if movieinfo['table']['results'][i]['table']['release_date'].present? %>

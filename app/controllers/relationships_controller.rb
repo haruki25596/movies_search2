@@ -1,25 +1,25 @@
 class RelationshipsController < ApplicationController
 
   def follow
-    current_user.follow(params[:user_id])
-    redirect_to root_path
+    current_user.follow(params[:id])
+    redirect_to user_path
   end
 
   def unfollow
-    current_user.unfollow(params[:userid])
-    redirect_to root_path
+    current_user.unfollow(params[:id])
+    redirect_to user_path
   end
 
   # フォローしている人一覧
   def follower
-    @user = User.find(params[:user_id])
-    @users = user.followings
+    user = User.find(params[:id])
+    @users = user.follower_user
   end
 
   # フォローされている人一覧
   def followed
-    @user = User.find(params[:user_id])
-    @users = user.followers
+    user = User.find(params[:id])
+    @users = user.following_user
   end
 
 end

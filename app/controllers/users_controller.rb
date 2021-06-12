@@ -7,6 +7,19 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
 
+    @user_goods = @user.goods
+    @user_reviews = @user.reviews
+
+    #　Goodの合計を計算する
+    @goods_count = 0
+    @user_reviews.each do |review|
+      @goods_count += review.goods.count
+    end
+    #　Badの合計を計算する
+    @bads_count = 0
+    @user_reviews.each do |review|
+      @bads_count += review.bads.count
+    end
   end
 
   def edit

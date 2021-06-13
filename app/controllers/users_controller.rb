@@ -9,6 +9,7 @@ class UsersController < ApplicationController
 
     @user_goods = @user.goods
     @user_reviews = @user.reviews
+    @user_interests = Interest.where(user_id: current_user.id)
 
     #　Goodの合計を計算する
     @goods_count = 0

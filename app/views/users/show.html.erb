@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
         <table class='table'>
-            <tr><%= attachment_image_tag(@user, :image, :fill, 100, 100, fallback: "no_profile_image.jpg") %></tr>
+            <tr><%= attachment_image_tag(@user, :image, :fill, 40, 40, fallback: "no_profile_image.jpg") %></tr>
             <tr>
   	           <th>氏名</th><th>
   	             <%= @user.name %></th>
@@ -20,12 +20,16 @@
               <th><%= link_to @user.follower_user.count, follower_user_path(@user.id) %></th>
             </tr>
             <tr>
-              <th>高評価をつけた映画作品</th>　   <!--Good評価-->
-              <th><%= @goods_count%></th>  <!--Bad評価-->
+              <th>高評価をつけた映画作品</th>　 
+              <th><%= @goods_count%></th>  
             </tr>
             <tr>
               <th>低評価をつけた映画作品</th>
               <th><%= @bads_count%></th>
+            </tr>
+            <tr>
+              <th>気になるリストに追加した作品</th>
+              <th><%= link_to @user_interests.count, user_interests_path(@user.id) %></th>
             </tr>
         </table>
         <div>

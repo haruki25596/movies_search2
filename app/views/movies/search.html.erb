@@ -1,7 +1,7 @@
-<div class='container px-10 px-sm-8'>
+<div class='container px-4 px-sm-4'>
   <div class='row'>
-    <div class='col-md-6'>
-    <div class='col-md-6 offset-md-8'>
+    <div class='col-md-12'>
+    <div class='col-md-10 offset-md-1'>
 
         <h2>映画検索</h2>
           <%= form_with url: search_movies_path, method: :get, local: true do |form| %>
@@ -17,6 +17,10 @@
             <div class="card-wrapper">
                 <% while i < movieinfo['table']['results'].count %>
                     <div class="card">
+                        <% if movieinfo['table']['results'][i]['table']['poster_path'].present? %>
+                            <p><%= image_tag 'https://image.tmdb.org/t/p/w1280' + movieinfo['table']['results'][i]['table']['poster_path'],class: "card-img" %></p>
+                        <%end%>
+                        
                         <div class="card-upperinfo">
                             <%if movieinfo['table']['results'][i]['table']['title'].present?%>
                                 <h3><%= link_to movieinfo['table']['results'][i]['table']['title'],movie_path(movieinfo['table']['results'][i]['table']['id']) %></h3>
@@ -26,11 +30,6 @@
                                 <p class="release-date"><%= movieinfo['table']['results'][i]['table']['release_date'] %></p>
                             <%end%>
                         </div>
-
-
-                        <% if movieinfo['table']['results'][i]['table']['poster_path'].present? %>
-                            <p><%= image_tag 'https://image.tmdb.org/t/p/w1280' + movieinfo['table']['results'][i]['table']['poster_path'],class: "card-img" %></p>
-                        <%end%>
                     </div>
                     <% i += 1%>
                 <%end%>
@@ -43,22 +42,20 @@
             <div class="card-wrapper">
                 <% while i < movieinfo['table']['results'].count %>
                     <div class="card">
+                        <% if movieinfo['table']['results'][i]['table']['poster_path'].present? %>
+                            <p><%= image_tag 'https://image.tmdb.org/t/p/w1280' + movieinfo['table']['results'][i]['table']['poster_path'],class: "card-img" %></p>
+                        <%end%>
                         <div class="card-upperinfo">
                             <%if movieinfo['table']['results'][i]['table']['title'].present?%>
-                                <h3><%#= link_to movieinfo['table']['results'][i]['table']['title'], movie_path(movieinfo['table']['results'][i]['table']['id'])%></h3>
+                                <h3><%= link_to movieinfo['table']['results'][i]['table']['title'], movie_path(movieinfo['table']['results'][i]['table']['id'])%></h3>
                             <%end%>
 
                             <% if movieinfo['table']['results'][i]['table']['release_date'].present? %>
                                 <p class="release-date"><%= movieinfo['table']['results'][i]['table']['release_date'] %></p>
                             <%end%>
                         </div>
-
-                            <% if movieinfo['table']['results'][i]['table']['poster_path'].present? %>
-                                <p><%= image_tag 'https://image.tmdb.org/t/p/w1280' + movieinfo['table']['results'][i]['table']['poster_path'],class: "card-img" %></p>
-                            <%end%>
-                        </div>
-
-                    <% i += 1%>
+                    </div>
+                <% i += 1%>
                 <%end%>
             </div>
         <%end%>

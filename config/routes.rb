@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     resources :interests, only: [:index]
   end
 
-  resources :reviews, only: [:new, :create, :index, :show, :destroy] do
+  resources :reviews, only: [:new, :create, :update, :edit, :destroy] do
     resource :post_comments, only: [:create, :destroy]
     resource :goods, only: [:create, :destroy]
     resource :bads, only: [:create, :destroy]

@@ -4,6 +4,9 @@
     <div class="card-wrapper">
         <% while i < movieinfo['table']['results'].count %>
             <div class="card">
+                <% if movieinfo['table']['results'][i]['table']['poster_path'].present? %>
+                    <p><%= image_tag 'https://image.tmdb.org/t/p/w1280' + movieinfo['table']['results'][i]['table']['poster_path'],class: "card-img" %></p>
+                <%end%>
                 <div class="card-upperinfo">
 
                     <%if movieinfo['table']['results'][i]['table']['title'].present?%>
@@ -14,11 +17,6 @@
                         <p class="release-date"><%= movieinfo['table']['results'][i]['table']['release_date'] %></p>
                     <%end%>
                 </div>
-
-
-                <% if movieinfo['table']['results'][i]['table']['poster_path'].present? %>
-                    <p><%= image_tag 'https://image.tmdb.org/t/p/w1280' + movieinfo['table']['results'][i]['table']['poster_path'],class: "card-img" %></p>
-                <%end%>
             </div>
             <% i += 1%>
         <%end%>

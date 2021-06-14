@@ -10,7 +10,7 @@
   <% @interests.each do |interest| %>
    <tr>
       <td>
-         <a><%= image_tag 'https://image.tmdb.org/t/p/w1280' + interest.poster_path,class: "icon-img" %></a>
+         <a><%= image_tag 'https://image.tmdb.org/t/p/w1280' + interest.poster_path,class: "icon-img", size: "150x150" %></a>
       </td>
       <td>
           <%= interest.title %>

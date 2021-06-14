@@ -34,6 +34,7 @@ class MoviesController < ApplicationController
     @movie = Tmdb::Movie.detail(params[:id])
     @interests = Interest.find_by(user_id: current_user.id, movie_id: params[:id])# current_userが該当のmovieをお気に入り登録済みか確認するための検索
     @interest_users = Interest.where(movie_id: params[:id]).count # 該当のmovieをお気に入りしているuserの数を調べる
+    @reviews = Review.where(movie_id: params[:id])
   end
 
   def movie_params

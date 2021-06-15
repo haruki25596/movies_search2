@@ -15,7 +15,7 @@ class ReviewsController < ApplicationController
     @review = Review.new(review_params)
     @review.user_id = current_user.id
     if @review.save
-      redirect_to new_review_path(@review), notice: 'あなたがレビューを投稿しました'
+      redirect_to movie_path(@review.movie_id), notice: 'あなたがレビューを投稿しました'
     else
       redirect_to request.referer
     end
@@ -36,6 +36,6 @@ class ReviewsController < ApplicationController
   private
 
   def review_params
-    params.require(:review).permit(:movie_id, :title, :user_id, :body, :poster_path)
+    params.require(:review).permit(:movie_id, :title, :user_id, :body, :poster_path, :rate)
   end
 end

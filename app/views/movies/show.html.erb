@@ -41,23 +41,12 @@
         <div class="row">
           <p class="col-md-8"><%= link_to "この作品にレビューを投稿する", new_review_path(movie_id: @movie.id), class: "btn btn-success btn-lg pull-right" %></p>
         </div>
-    
+
         <div class="row">
           <p class="col-md-8"><%= link_to "他の作品を探す", search_movies_path, class: "btn btn-success btn-lg pull-right" %></p>
         </div>
     </div>
   </div>
 </div>
- <!--<div class="comments">-->
-        <!--<p>コメント件数：<%#= @review.post_comments.count %></p>-->
-          <%# @review.post_comments.each do |post_comment| %>
-          <%#= post_comment.user.name %>
-          <%#= post_comment.created_at.strftime('%Y/%m/%d') %><%#= post_comment.comment %>
-          <%# end %>
-        <!--</div>-->
-        <!--<div class="new-comment">-->
-        <%#= form_with(model:[@review, @post_comment], local: true) do |f| %>
-          <%#= f.text_area :comment, rows:'5',placeholder: "コメントをする" %>
-          <%#= f.submit "送信する" %>
-        <%# end %>
-        <!--</div>-->
+
+ <%= render 'reviews/index', review: @review %>

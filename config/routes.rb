@@ -22,9 +22,10 @@ Rails.application.routes.draw do
 
   resources :reviews, only: [:new, :create, :update, :edit, :destroy] do
     resource :post_comments, only: [:create, :destroy]
-    resource :goods, only: [:create, :destroy]
-    resource :bads, only: [:create, :destroy]
   end
+
+  resources :goods, only: [:create, :destroy]
+  resources :bads, only: [:create, :destroy]
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

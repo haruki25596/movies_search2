@@ -1,23 +1,25 @@
 <%# if !user_signed_in? %>
+<div class="row">
  <% movieinfo = @tmdbs %>
     <% i = 0 %>
-    <div class="card-wrapper">
         <% while i < movieinfo['table']['results'].count %>
-            <div class="card">
-                <% if movieinfo['table']['results'][i]['table']['poster_path'].present? %>
-                    <p><%= image_tag 'https://image.tmdb.org/t/p/w1280' + movieinfo['table']['results'][i]['table']['poster_path'],class: "card-img" %></p>
-                <%end%>
-                <div class="card-upperinfo">
-
-                    <%if movieinfo['table']['results'][i]['table']['title'].present?%>
-                        <h3><%= link_to movieinfo['table']['results'][i]['table']['title'],movie_path(movieinfo['table']['results'][i]['table']['id']) %></h3>
+            <div class="col-2">
+                <div class="card">
+                    <% if movieinfo['table']['results'][i]['table']['poster_path'].present? %>
+                        <p><%= image_tag 'https://image.tmdb.org/t/p/w1280' + movieinfo['table']['results'][i]['table']['poster_path'],class: "card-img" %></p>
                     <%end%>
+                    <div class="card-upperinfo">
+                        <%if movieinfo['table']['results'][i]['table']['title'].present?%>
+                            <p><%= link_to movieinfo['table']['results'][i]['table']['title'],movie_path(movieinfo['table']['results'][i]['table']['id']) %></p>
+                        <%end%>
 
-                    <% if movieinfo['table']['results'][i]['table']['release_date'].present? %>
-                        <p class="release-date"><%= movieinfo['table']['results'][i]['table']['release_date'] %></p>
-                    <%end%>
+                        <% if movieinfo['table']['results'][i]['table']['release_date'].present? %>
+                            <p class="release-date"><%= movieinfo['table']['results'][i]['table']['release_date'] %></p>
+                        <%end%>
+                    </div>
                 </div>
             </div>
             <% i += 1%>
         <%end%>
     </div>
+</div>

@@ -6,10 +6,14 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav ml-auto">
+        <ul class="nav">
         <% if user_signed_in? %>
           <li><%= link_to ' トップページ',root_path(current_user.id),class: 'fas fa-home nav-link text-light' %></li>
           <li><%= link_to ' 検索する',search_movies_path ,class: 'fas fa-book-open nav-link text-light'%></li>
+          <li class="notification"><%= link_to '通知', notifications_path, class:"btn"  %>
+          <% if unchecked_notifications.any? %>
+          <i class="fa fa-circle notification-circle"></i>
+          <% end %>
           <li><%= link_to ' マイページ',user_path(current_user.id),class: 'fas fa-users nav-link text-light' %></li>
           <li><%= link_to ' 全てのユーザー',users_path ,class: 'fas fa-book-open nav-link text-light'%></li>
           <li><%= link_to ' ログアウト', destroy_user_session_path, method: :delete,class: 'fas fa-sign-out-alt nav-link text-light' %></li>

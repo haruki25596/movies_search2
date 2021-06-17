@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   get 'users/:id/follower'=> 'relationships#follower', as: 'follower_user'
   get 'users/:id/followed'=> 'relationships#followed', as: 'followed_user'
 
+  resources :notifications, only: [:index]
+
   resources :users, only: [:index, :show, :edit, :update] do
     resources :interests, only: [:index]
   end

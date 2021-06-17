@@ -48,10 +48,10 @@
           }
         </style>
         <div class="row">
-　        <p class="col-md-6">
+　        <p class="col-md-12">
 　          <% if user_signed_in? %>
-              <% if @good_id.present? %>
-                <%= link_to good_path(@good_id, :movie_id => @movie.id),method: :delete do %>
+              <% if @good.present? %>
+                <%= link_to good_path(@good, :movie_id => @movie.id),method: :delete do %>
                   <p>good解除</p>
                 <% end %>
               <% else %>
@@ -59,8 +59,8 @@
                   <p>goodする？</p>
                 <% end %>
               <% end %>
-              <% if @bad_id.present? %>
-                <%= link_to bad_path(@bad_id, :movie_id => @movie.id),method: :delete do %>
+              <% if @bad.present? %>
+                <%= link_to bad_path(@bad, :movie_id => @movie.id),method: :delete do %>
                   <p>bad解除</p>
                 <% end %>
               <% else %>

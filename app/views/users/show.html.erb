@@ -1,45 +1,79 @@
 <div class="container">
   <div class="row">
-    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
-        <table class='table'>
-            <tr><%= attachment_image_tag(@user, :image, :fill, 40, 40, fallback: "no_profile_image.jpg") %></tr>
-            <tr>
-  	           <th>氏名</th><th>
-  	             <%= @user.name %></th>
-            </tr>
-            <tr>
-  	           <th>自己紹介</th>
-  	           <th><%= @user.introduction %></th>
-            </tr>
-            <tr>
-              <th>フォロー数</th>
-              <th><%= link_to @user.following_user.count, followed_user_path(@user.id) %></th>
-            </tr>
-            <tr>
-              <th>フォロワー数</th>
-              <th><%= link_to @user.follower_user.count, follower_user_path(@user.id) %></th>
-            </tr>
-            <tr>
-              <th>高評価をつけた映画作品</th>　 
-              <th><%= @goods_count%></th>  
-            </tr>
-            <tr>
-              <th>低評価をつけた映画作品</th>
-              <th><%= @bads_count%></th>
-            </tr>
-            <tr>
-              <th>気になるリストに追加した作品</th>
-              <th><%= link_to @user_interests.count, user_interests_path(@user.id) %></th>
-            </tr>
-        </table>
-        <div>
-          <% if @user.id == current_user.id %>
-            <p><%= link_to "編集する", edit_user_path(@user), class: 'btn btn-sm btn-success' %></p>
-          <% end %>
+    <!--<div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">-->
+        <div class="p-profile">
+          <div class="p-profile_inner">
+            <ul class="c-breadcrumbs">
+              <li>プロフィール</li>
+            </ul>
+            <div class="profile_main">
+              <div class="profile_content">
+                <div class="profile_avator">
+                  <%= attachment_image_tag(@user, :image, :fill, 100, 100, fallback: "no_profile_image.jpg") %>
+                </div>
+                <div class="p-profile_body">
+                  <h2 class="p-profile_name">
+                    <%= @user.name %>
+                  </h2>
+                  <div id="js-raw-content-detail-synopsis" class="p-profile_text">
+                    <div>
+                      <div>
+                        <p class="p-content-detail_synopsis-desc is-show-all">
+                          <%= @user.introduction %>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+              <div class="p-profile_buttons">
+                <div class="p-profile_follow crearfix">
+                  <a class="c-button-1 c-button-1--secondary">
+                    <% if @user.id == current_user.id %>
+                    <%= link_to "プロフィール編集", edit_user_path(@user), class: 'c-button-1 c-button-1--secondary' %>
+                    <% end %>
+                  </a>
+                </div>
+              </div>
+          <div class="p-users-navi">
+            <div class="p-users-navi_inner">
+              <ul class="p-users-navi_list">
+                <li class="p-users-navi_item p-users-navi_item--marks">
+                  <li class="p-users-navi__item p-users-navi__item--marks">
+                    <span><%= link_to @user_interests.count, user_interests_path(@user.id) %></span>
+                    <span class="p-users-navi__text">Marks</span>
+                  </li>
+                </li>
+                <li>
+                  <i class="bi bi-chat-right-dots">
+                    <%= link_to @user.follower_user.count, follower_user_path(@user.id) %>
+                      <span class="p-users-navi__text">Followers</span>
+                  </i>
+                </li>
+                <li>
+                  <i class="bi bi-chat-right-dots">
+                    <%= link_to @user.following_user.count, followed_user_path(@user.id) %>
+                      <span class="p-users-navi__text">Followings</span>
+                  </i>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
   </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

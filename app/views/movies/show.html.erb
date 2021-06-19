@@ -1,8 +1,4 @@
 <div class="container">
-  <h2 class="mt-5">作品詳細</h2>
-  <div class="row">
-  </div>
-
   <div class="row">
     <div class="mt-5 col-md-3">
         <span><%= image_tag 'https://image.tmdb.org/t/p/w1280' + @movie['poster_path'],class: "card-img" %></sapn>
@@ -11,19 +7,19 @@
 
   <div class="mt-5 col-md-9">
         <div class="row">
-          <p class="col-md-4 admin-item-title">製作時期:</p>
-          <p class="col-md-8"><%= @movie['release_date'] %></p>
+          <p class="col-md-3 admin-item-title">製作時期:</p>
+          <p class="col-md-3"><%= @movie['release_date'] %></p>
         </div>
         <div class="row">
-          <p class="col-md-4">作品タイトル:</p>
-          <p class="col-md-8"><%= @movie['title'] %></p>
+          <p class="col-md-3">作品タイトル:</p>
+          <p class="col-md-3"><%= @movie['title'] %></p>
         </div>
         <div class="row">
-          <p class="col-md-4">あらすじ:</p>
-          <p class="col-md-8"><%= @movie['overview'] %></p>
+          <p class="col-md-3">あらすじ:</p>
+          <p class="col-md-12"><%= @movie['overview'] %></p>
         </div>
         <div class="row">
-          <p class="col-md-4">この作品の評価：</p>
+          <p class="col-md-3">この作品の評価：</p>
             <div id="star-rate-<%= @movie.id %>"></div>
           </div>
         </div>
@@ -48,23 +44,25 @@
           }
         </style>
         <div class="row">
-　        <p class="col-md-12">
+　        <div class="col-md-6">
 　          <% if user_signed_in? %>
               <% if @good.present? %>
-                <%= link_to good_path(@good, :movie_id => @movie.id),method: :delete do %>
+                <%= link_to good_path(@good, :movie_id => @movie.id),method: :delete, class: "fas fa-thumbs-up" do %>
                   <p>good解除</p>
                 <% end %>
               <% else %>
-                <%= link_to goods_path(:movie_id => @movie.id),method: :post do %>
-                  <p>goodする？</p>
+                <%= link_to goods_path(:movie_id => @movie.id),method: :post, class: "fas fa-thumbs-up" do %>
+                  <p>goodする</p>
                 <% end %>
               <% end %>
+        <div class="row">
+　        <div class="col-md-6">
               <% if @bad.present? %>
-                <%= link_to bad_path(@bad, :movie_id => @movie.id),method: :delete do %>
+                <%= link_to bad_path(@bad, :movie_id => @movie.id),method: :delete, class: 'fas fa-thumbs-down' do %>
                   <p>bad解除</p>
                 <% end %>
               <% else %>
-                <%= link_to bads_path(:movie_id => @movie.id),method: :post do %>
+                <%= link_to bads_path(:movie_id => @movie.id),method: :post, class: 'fas fa-thumbs-down'  do %>
                   <p>badする？</p>
                 <% end %>
               <% end %>

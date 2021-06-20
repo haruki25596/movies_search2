@@ -1,6 +1,5 @@
 class MoviesController < ApplicationController
-
-  before_action :set_q, only: [:index, :search]
+  before_action :redirect_root, except: [:index, :show, :search]
 
   require 'themoviedb-api'
   Tmdb::Api.key("6ce86077881a441d243745e068c0f6dc")
@@ -32,17 +31,23 @@ class MoviesController < ApplicationController
 
   def show
     @movie = Tmdb::Movie.detail(params[:id])
-    @interests = Interest.find_by(user_id: current_user.id, movie_id: params[:id])# current_userが該当のmovieをお気に入り登録済みか確認するための検索
-    @interest_users = Interest.where(movie_id: params[:id]).count # 該当のmovieをお気に入りしているuserの数を調べる
     @reviews = Review.where(movie_id: params[:id])
-    @good = Good.find_by(user_id: current_user.id, movie_id: params[:id])
-    @bad = Bad.find_by(user_id: current_user.id, movie_id: params[:id])
+    if user_signed_in?
+      @good = Good.find_by(user_id: current_user.id, movie_id: params[:id])
+      @bad = Bad.find_by(user_id: current_user.id, movie_id: params[:id])
+    end
     @user_goods = Good.where(movie_id: params[:id])
     @user_bads = Bad.where(movie_id: params[:id])
   end
 
   def movie_params
       params.require(:movie).permit(:title, :body, :user_id)
+  end
+
+  private
+
+  def redirect_root
+    redirect_to new_user_session_path unless user_signed_in?
   end
 
 end

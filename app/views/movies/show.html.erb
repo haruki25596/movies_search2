@@ -74,19 +74,25 @@
 
         <div class="row">
           <p class="col-md-12">
-            <% if current_user.interests.find_by(movie_id: @movie.id).present? %>
-              <%= link_to "追加済み", movie_interests_path(@movie.id), class:"btn btn-info btn-sm mr-2", method: :delete, data: { confirm: '気になるリストから削除してもよろしいですか？' } %>
-            <% else %>
-              <%= link_to "気になるリストに追加する", movie_interests_path(@movie.id), class:"btn btn-warning btn-sm mr-2", method: :post %>
+            <% if user_signed_in? %>
+              <% if current_user.interests.find_by(movie_id: @movie.id).present? %>
+                <%= link_to "追加済み", movie_interests_path(@movie.id), class:"btn btn-info btn-sm mr-2", method: :delete, data: { confirm: '気になるリストから削除してもよろしいですか？' } %>
+              <% else %>
+                <%= link_to "気になるリストに追加する", movie_interests_path(@movie.id), class:"btn btn-warning btn-sm mr-2", method: :post %>
+              <% end %>
             <% end %>
           </p>
         </div>
         <div class="row">
-          <p class="col-md-12"><%= link_to "この作品にレビューを投稿する", new_review_path(movie_id: @movie.id), class: "btn btn-success btn-lg pull-right" %></p>
+          <% if user_signed_in? %>
+            <p class="col-md-12"><%= link_to "この作品にレビューを投稿する", new_review_path(movie_id: @movie.id), class: "btn btn-success btn-lg pull-right" %></p>
+          <% else %>
+            <p><%= link_to "ログインして作品にレビューを投稿する", new_user_session_path(movie_id: @movie.id), class: "btn btn-success btn-lg pull-right" %></p>
+          <% end %>
         </div>
 
         <div class="row">
-          <p class="col-md-12"><%= link_to "他の作品を探す", search_movies_path, class: "btn btn-success btn-lg pull-right" %></p>
+          <p><%= link_to "他の作品を探す", search_movies_path, class: "btn btn-success btn-lg pull-right" %></p>
         </div>
     </div>
   </div>

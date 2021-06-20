@@ -7,6 +7,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @user_goods = @user.goods
+    @user_bads = @user.bads
     @user_reviews = @user.reviews
     @user_interests = Interest.where(user_id: current_user.id)
 

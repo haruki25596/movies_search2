@@ -15,7 +15,9 @@ class Review < ApplicationRecord
     bads.where(user_id: user.id).exists? # exists?の方がいいかも
   end
 
-validates :rate, numericality: {
+  validates :body, length: { maximum: 2000 }
+
+  validates :rate, numericality: {
     less_than_or_equal_to: 5,
     greater_than_or_equal_to: 1
   }, presence: true

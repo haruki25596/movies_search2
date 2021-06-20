@@ -7,10 +7,6 @@ class ReviewsController < ApplicationController
     @review = Review.new(movie_id: params[:movie_id], title: @movie['title'], poster_path: @movie['poster_path'])
   end
 
-  def edit
-  end
-
-
   def create
     @review = Review.new(review_params)
     @review.user_id = current_user.id
@@ -19,12 +15,6 @@ class ReviewsController < ApplicationController
     else
       redirect_to request.referer
     end
-  end
-
-  def update
-    @review = Review.find(params[:id])
-    @review.update(review_params)
-    redirect_to request.referer, notice: "あなたがレビューを更新しました"
   end
 
   def destroy

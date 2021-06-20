@@ -44,26 +44,26 @@
           }
         </style>
         <div class="row">
-　        <div class="col-md-6">
+　        <div class="col-md-4">
 　          <% if user_signed_in? %>
               <% if @good.present? %>
                 <%= link_to good_path(@good, :movie_id => @movie.id),method: :delete, class: "fas fa-thumbs-up" do %>
-                  <p>good解除</p>
+                  <%= @user_goods.count %>
                 <% end %>
               <% else %>
                 <%= link_to goods_path(:movie_id => @movie.id),method: :post, class: "fas fa-thumbs-up" do %>
-                  <p>goodする</p>
+                  <%= @user_goods.count %>
                 <% end %>
               <% end %>
         <div class="row">
-　        <div class="col-md-6">
+　        <div class="col-md-4">
               <% if @bad.present? %>
                 <%= link_to bad_path(@bad, :movie_id => @movie.id),method: :delete, class: 'fas fa-thumbs-down' do %>
-                  <p>bad解除</p>
+                  <%= @user_bads.count %>
                 <% end %>
               <% else %>
                 <%= link_to bads_path(:movie_id => @movie.id),method: :post, class: 'fas fa-thumbs-down'  do %>
-                  <p>badする？</p>
+                  <%= @user_bads.count %>
                 <% end %>
               <% end %>
             <% end %>

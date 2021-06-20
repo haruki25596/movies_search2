@@ -37,8 +37,8 @@ class MoviesController < ApplicationController
     @reviews = Review.where(movie_id: params[:id])
     @good = Good.find_by(user_id: current_user.id, movie_id: params[:id])
     @bad = Bad.find_by(user_id: current_user.id, movie_id: params[:id])
-    @user_goods = Good.where(user_id: current_user.id)
-    @user_bads = Bad.where(user_id: current_user.id)
+    @user_goods = Good.where(movie_id: params[:id])
+    @user_bads = Bad.where(movie_id: params[:id])
   end
 
   def movie_params

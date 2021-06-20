@@ -14,12 +14,13 @@ class RelationshipsController < ApplicationController
 
   def follow
     current_user.follow(params[:id])
-    redirect_to user_path
+    User.find(params[:id]).create_notification_follow!(current_user)
+    redirect_to users_path
   end
 
   def unfollow
     current_user.unfollow(params[:id])
-    redirect_to user_path
+    redirect_to users_path
   end
 
   # フォローしている人一覧

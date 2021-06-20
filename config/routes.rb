@@ -16,7 +16,11 @@ Rails.application.routes.draw do
   get 'users/:id/follower'=> 'relationships#follower', as: 'follower_user'
   get 'users/:id/followed'=> 'relationships#followed', as: 'followed_user'
 
-  resources :notifications, only: [:index]
+  resources :notifications, only: [:index] do
+    collection do
+      delete 'destroy_all'
+    end
+  end
 
   resources :users, only: [:index, :show, :edit, :update] do
     resources :interests, only: [:index]

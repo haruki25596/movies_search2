@@ -15,6 +15,18 @@
 }
 
 
+
+.box{
+ display: flex;
+ border: 1px solid #000;
+ justify-content: center;
+}
+
+.box1:hover, .box2:hover, .box3:hover {
+  background-color: yellow;
+}
+
+
     // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/

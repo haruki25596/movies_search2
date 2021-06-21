@@ -2,28 +2,45 @@
   <div class="row">
     <div class="mt-5 col-md-3">
         <span><%= image_tag 'https://image.tmdb.org/t/p/w1280' + @movie['poster_path'],class: "card-img" %></sapn>
-    </div>
-
-
-  <div class="mt-5 col-md-9">
+        <% if user_signed_in? %>
+          <div id="good-btn_<%= @movie.id %>">
+            <%= render partial: 'goods/good-btn', locals: {movie_id: @movie.id, good: @good, user_goods: @user_goods} %>
+          </div>
+          <div id="bad-btn_<%= @movie.id %>">
+            <%= render partial: 'bads/bad-btn', locals: {movie_id: @movie.id, bad: @bad, user_bads: @user_bads} %>
+          </div>
+        <% end %>
         <div class="row">
-          <p class="col-md-3 admin-item-title">製作時期:</p>
-          <p class="col-md-3"><%= @movie['release_date'] %></p>
+          <p class="col-md-12">
+            <% if user_signed_in? %>
+              <% if current_user.interests.find_by(movie_id: @movie.id).present? %>
+                <%= link_to "追加済み", movie_interests_path(@movie.id), class:"btn btn-info btn-lg", method: :delete, data: { confirm: '気になるリストから削除してもよろしいですか？' } %>
+              <% else %>
+                <%= link_to "気になるリストに追加", movie_interests_path(@movie.id), class:"btn btn-warning btn-lg", method: :post %>
+              <% end %>
+            <% end %>
+          </p>
         </div>
+      </div>
+      <div class="mt-5 col-md-9">
         <div class="row">
-          <p class="col-md-3">作品タイトル:</p>
-          <p class="col-md-3"><%= @movie['title'] %></p>
-        </div>
-        <div class="row">
-          <p class="col-md-3">あらすじ:</p>
-          <p class="col-md-12"><%= @movie['overview'] %></p>
-        </div>
-        <div class="row">
-          <p class="col-md-3">この作品の評価：</p>
+            <p class="col-md-3 admin-item-title">製作時期:</p>
+            <p class="col-md-3"><%= @movie['release_date'] %></p>
+          </div>
+          <div class="row">
+            <p class="col-md-3">作品タイトル:</p>
+            <p class="col-md-3"><%= @movie['title'] %></p>
+          </div>
+          <div class="row">
+            <p class="col-md-3">あらすじ:</p>
+            <p class="col-md-12"><%= @movie['overview'] %></p>
+          </div>
+          <div class="row">
+            <p class="col-md-3">この作品の評価：</p>
             <div id="star-rate-<%= @movie.id %>"></div>
           </div>
-        </div>
-        <script>
+      </div>
+      <script>
         $(function(){
           $('#star-rate-<%= @movie.id %>').raty({
             size: 36,
@@ -36,66 +53,27 @@
             //scoreName: 'review[rate]'
           });
         });
-        </script>
-        <style>
+      </script>
+      <style>
           #star-rate-<%= @movie.id %> img {
             width: 25px;
             height: 25px;
           }
-        </style>
-        <div class="row">
-　        <div class="col-md-4">
-　          <% if user_signed_in? %>
-              <% if @good.present? %>
-                <%= link_to good_path(@good, :movie_id => @movie.id),method: :delete, class: "fas fa-thumbs-up" do %>
-                  <%= @user_goods.count %>
-                <% end %>
-              <% else %>
-                <%= link_to goods_path(:movie_id => @movie.id),method: :post, class: "fas fa-thumbs-up" do %>
-                  <%= @user_goods.count %>
-                <% end %>
-              <% end %>
-        <div class="row">
-　        <div class="col-md-4">
-              <% if @bad.present? %>
-                <%= link_to bad_path(@bad, :movie_id => @movie.id),method: :delete, class: 'fas fa-thumbs-down' do %>
-                  <%= @user_bads.count %>
-                <% end %>
-              <% else %>
-                <%= link_to bads_path(:movie_id => @movie.id),method: :post, class: 'fas fa-thumbs-down'  do %>
-                  <%= @user_bads.count %>
-                <% end %>
-              <% end %>
-            <% end %>
-　          <%#= button_to 'Good', review_goods_path, class:'good-btn' %>
-　          <%#= button_to 'Bad', review_bads_path, class:'bad-btn' %>
-          </p>
-        </div>
-
-        <div class="row">
-          <p class="col-md-12">
-            <% if user_signed_in? %>
-              <% if current_user.interests.find_by(movie_id: @movie.id).present? %>
-                <%= link_to "追加済み", movie_interests_path(@movie.id), class:"btn btn-info btn-sm mr-2", method: :delete, data: { confirm: '気になるリストから削除してもよろしいですか？' } %>
-              <% else %>
-                <%= link_to "気になるリストに追加する", movie_interests_path(@movie.id), class:"btn btn-warning btn-sm mr-2", method: :post %>
-              <% end %>
-            <% end %>
-          </p>
-        </div>
-        <div class="row">
+      </style>
+      <div class="row">
+        <div class="col-md-12">
           <% if user_signed_in? %>
-            <p class="col-md-12"><%= link_to "この作品にレビューを投稿する", new_review_path(movie_id: @movie.id), class: "btn btn-success btn-lg pull-right" %></p>
+            <p><%= link_to "レビューを投稿する", new_review_path(movie_id: @movie.id), class: "btn btn-success btn-lg pull-right" %></p>
           <% else %>
-            <p><%= link_to "ログインして作品にレビューを投稿する", new_user_session_path(movie_id: @movie.id), class: "btn btn-success btn-lg pull-right" %></p>
+            <p><%= link_to "ログインしてレビューを投稿する", new_user_session_path(movie_id: @movie.id), class: "btn btn-success btn-lg pull-right" %></p>
           <% end %>
         </div>
-
-        <div class="row">
-          <p><%= link_to "他の作品を探す", search_movies_path, class: "btn btn-success btn-lg pull-right" %></p>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <p><%= link_to "他の作品を探す", search_movies_path, class: "btn btn-primary btn-lg" %></p>
         </div>
-    </div>
+      </div>
   </div>
 </div>
-
- <%= render 'reviews/index', review: @review %>
+<%= render 'reviews/index', review: @review %>

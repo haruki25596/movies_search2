@@ -1,0 +1,9 @@
+<% if good.present? %>
+  <%= link_to good_path(good, :movie_id => movie_id),method: :delete, remote: true, class: "fas fa-thumbs-up" do %>
+    <%= user_goods.count %>
+  <% end %>
+<% else %>
+  <%= link_to goods_path(:movie_id => movie_id),method: :post, remote: true, class: "fas fa-thumbs-up" do %>
+    <%= user_goods.count %>
+  <% end %>
+<% end %>

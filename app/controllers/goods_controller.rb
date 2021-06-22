@@ -4,9 +4,10 @@ class GoodsController < ApplicationController
     @good = Good.new(user_id: current_user.id, movie_id: params[:movie_id])
     @movie_id = @good.movie_id
     @user_goods = Good.where(movie_id: params[:movie_id])
+    @user_bads = Bad.where(movie_id: params[:movie_id])
 
-    if @bad = Bad.find_by(user_id: current_user.id, movie_id: params[:movie_id])
-      @bad.destroy
+    if bad = Bad.find_by(user_id: current_user.id, movie_id: params[:movie_id])
+      bad.destroy
     end
     @good.save
   end
@@ -14,6 +15,7 @@ class GoodsController < ApplicationController
   def destroy
     good = Good.find_by(user_id: current_user.id, movie_id: params[:movie_id])
     @user_goods = Good.where(movie_id: params[:movie_id])
+    @user_bads = Bad.where(movie_id: params[:movie_id])
     @movie_id = good.movie_id
     good.destroy
   end

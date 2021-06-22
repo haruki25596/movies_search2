@@ -38,7 +38,7 @@
                     }
                   </style>
               </td>
-              <td>評価：<%= review.rate %>点 | <%= review.title %></td>
+              <td>評価：<%= review.rate %>点<br><%= review.title %></td>
               <td>
                 <% if current_user == review.user %>
                   <%= link_to '削除', review, method: :delete, class:'badge badge-danger' %>

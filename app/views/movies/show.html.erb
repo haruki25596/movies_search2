@@ -3,11 +3,8 @@
     <div class="mt-5 col-md-3">
         <span><%= image_tag 'https://image.tmdb.org/t/p/w1280' + @movie['poster_path'],class: "card-img" %></sapn>
         <% if user_signed_in? %>
-          <div id="good-btn_<%= @movie.id %>">
-            <%= render partial: 'goods/good-btn', locals: {movie_id: @movie.id, good: @good, user_goods: @user_goods} %>
-          </div>
-          <div id="bad-btn_<%= @movie.id %>">
-            <%= render partial: 'bads/bad-btn', locals: {movie_id: @movie.id, bad: @bad, user_bads: @user_bads} %>
+          <div id="good-bad">
+            <%= render partial: 'goods/good-btn', locals: {movie_id: @movie.id, user_bads: @user_bads, user_goods: @user_goods} %>
           </div>
         <% end %>
         <div class="row">

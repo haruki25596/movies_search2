@@ -10,7 +10,7 @@
                     <%end%>
                     <div class="card-upperinfo">
                         <%if movieinfo['table']['results'][i]['table']['title'].present?%>
-                            <p><%= link_to movieinfo['table']['results'][i]['table']['title'],movie_path(movieinfo['table']['results'][i]['table']['id']) %></p>
+                            <p><%= link_to movieinfo['table']['results'][i]['table']['title'],movie_path(movieinfo['table']['results'][i]['table']['id']),data: {"turbolinks"=>false} %></p>
                         <%end%>
 
                         <% if movieinfo['table']['results'][i]['table']['release_date'].present? %>

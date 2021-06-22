@@ -1,1 +1,1 @@
-$("#bad-btn_<%= @movie_id %>").html("<%= j(render partial: 'bads/bad-btn', locals: {movie_id: @movie_id, bad: @bad, user_bads: @user_bads}) %>");
+$("#good-bad").html("<%= j(render partial: 'goods/good-btn', locals: {movie_id: @movie_id, user_goods: @user_goods, user_bads: @user_bads}) %>");

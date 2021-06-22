@@ -38,6 +38,12 @@ class MoviesController < ApplicationController
     end
     @user_goods = Good.where(movie_id: params[:id])
     @user_bads = Bad.where(movie_id: params[:id])
+    if Good.exists?(user_id: current_user.id, movie_id: @movie.id)
+      @good = Good.find_by(user_id: current_user.id, movie_id: @movie.id)
+    end
+    if Bad.exists?(user_id: current_user.id, movie_id: @movie.id)
+      @bad = Bad.find_by(user_id: current_user.id, movie_id: @movie.id)
+    end
   end
 
   def movie_params

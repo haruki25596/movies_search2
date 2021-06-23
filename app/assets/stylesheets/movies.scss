@@ -28,10 +28,16 @@
 
 .fa-thumbs-up{
     font-size: 25px;
+    height: 50px;
+    width: 50px;
+    margin-left: 30%;
 }
 
 .fa-thumbs-down{
     font-size: 25px;
+    height: 50px;
+    width: 50px;
+    margin: 10px;
 }
 
 .mt-3, .my-3{
@@ -40,25 +46,9 @@
 }
 
 .common-heading {
-  border-bottom: 8px solid #f7f7f7;
+  border-bottom: 8px solid palegreen;
   text-align: center;
   line-height: 0.6;
+
 }
 
-.sidebar-contents {
-  padding: 50px 0;
-}
-
-.popular-text,
-.categories-text {
-  padding-bottom: 5px;
-  border-bottom: 1px solid #f7f7f7;
-  margin-bottom: 5px;
-}
-
-.popular-text:last-child,
-.categories-text:last-child {
-  margin: 0;
-  padding: 0;
-  border: none;
-}

@@ -1,5 +1,5 @@
 <!--<h2>気になる作品リスト</h2>-->
-<%# if @interests.exists? %>
+<% if @interests.exists? %>
 <table class="table">
  <thead>
   <tr>
@@ -25,8 +25,8 @@
   <% end %>
  </tbody>
 </table>
-<%# else %>
-  <!--<p>気になるリストに追加した映画はありません</p>-->
-<%# end %>
+<% else %>
+  <p>気になるリストに追加した映画はありません</p>
+<% end %>
 
 

@@ -35,14 +35,14 @@ class MoviesController < ApplicationController
     if user_signed_in?
       @good = Good.find_by(user_id: current_user.id, movie_id: params[:id])
       @bad = Bad.find_by(user_id: current_user.id, movie_id: params[:id])
-    end
-    @user_goods = Good.where(movie_id: params[:id])
-    @user_bads = Bad.where(movie_id: params[:id])
-    if Good.exists?(user_id: current_user.id, movie_id: @movie.id)
-      @good = Good.find_by(user_id: current_user.id, movie_id: @movie.id)
-    end
-    if Bad.exists?(user_id: current_user.id, movie_id: @movie.id)
-      @bad = Bad.find_by(user_id: current_user.id, movie_id: @movie.id)
+      @user_goods = Good.where(movie_id: params[:id])
+      @user_bads = Bad.where(movie_id: params[:id])
+      if Good.exists?(user_id: current_user.id, movie_id: @movie.id)
+        @good = Good.find_by(user_id: current_user.id, movie_id: @movie.id)
+      end
+      if Bad.exists?(user_id: current_user.id, movie_id: @movie.id)
+        @bad = Bad.find_by(user_id: current_user.id, movie_id: @movie.id)
+      end
     end
   end
 

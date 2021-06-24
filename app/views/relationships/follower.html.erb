@@ -1,32 +1,32 @@
 <h2>フォローされているユーザー</h2>
 <% if @users.exists? %>
 <table class="table">
- <thead>
-  <tr>
-   <th>image</th>
-   <th>name</th>
-  </tr>
- </thead>
+  <thead>
+    <tr>
+      <th>image</th>
+      <th>name</th>
+    </tr>
+   </thead>
  <tbody>
-  <% @users.each do |user| %>
-   <tr>
-    <td>
-     <a><%= attachment_image_tag user, :image,  fallback: "no_profile_image.jpg", class:"mt-3 rounded-circle", size: "40x40" %></a>
-    </td>
-    <td><%= user.name %></td>
-    <td>フォロー数: <%= user.follower.count %></td>
-    <td>フォロワー数: <%= user.followed.count %></td>
-    <td>
-     <% if user != current_user %>
-      <% if current_user.following?(user) %>
-       <%= link_to 'フォロー外す', unfollow_path(user.id), method: :post %>
-      <% else %>
-       <%= link_to 'フォローする', follow_path(user.id), method: :post %>
-      <% end %>
-     <% end %>
-    </td>
-    <td><%= link_to "詳細", user_path(user) %></td>
-   </tr>
+   <% @users.each do |user| %>
+    <tr>
+      <td>
+        <a><%= attachment_image_tag user, :image,  fallback: "no_profile_image.jpg", class:"mt-3 rounded-circle", size: "40x40" %></a>
+      </td>
+      <td><%= user.name %></td>
+      <td>フォロー数: <%= user.follower.count %></td>
+      <td>フォロワー数: <%= user.followed.count %></td>
+      <td>
+       <% if user != current_user %>
+         <% if current_user.following?(user) %>
+           <%= link_to 'フォロー外す', unfollow_path(user.id), method: :post %>
+         <% else %>
+           <%= link_to 'フォローする', follow_path(user.id), method: :post %>
+         <% end %>
+       <% end %>
+      </td>
+      <td><%= link_to "詳細", user_path(user) %></td>
+    </tr>
   <% end %>
  </tbody>
 </table>

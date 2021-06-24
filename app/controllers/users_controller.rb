@@ -2,6 +2,7 @@ class UsersController < ApplicationController
 
   def index
     @users = User.page(params[:page]).per(8)
+    @users = @users.page(params[:page])
   end
 
   def show

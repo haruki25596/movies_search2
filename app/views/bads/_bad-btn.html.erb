@@ -1,9 +1,0 @@
-<% if bad.present? %>
-  <%= link_to bad_path(bad, :movie_id => movie_id),method: :delete, remote: true, class: 'fas fa-thumbs-down' do %>
-    <%= user_bads.count %>
-  <% end %>
-<% else %>
-  <%= link_to bads_path(:movie_id => movie_id),method: :post, remote: true,  class: 'fas fa-thumbs-down'  do %>
-    <%= user_bads.count %>
-  <% end %>
-<% end %>

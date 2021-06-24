@@ -10,11 +10,21 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
+
  *= require_self
  */
+@import 'bads.scss';
+@import 'goods.scss';
+@import 'homes.scss';
+@import 'interests.scss';
+@import 'movies.scss';
+@import 'notifications.scss';
+@import 'post_comments.scss';
+@import 'relationships.scss';
+@import 'reviews.scss';
 @import "bootstrap";
 @import 'font-awesome-sprockets';
+@import 'font-awesome';
 @import 'font-awesome';
 // body {
 //   background-image: image-url("no_profile_image");}

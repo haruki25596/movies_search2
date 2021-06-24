@@ -13,15 +13,15 @@
 
  *= require_self
  */
-@import 'bads.scss';
-@import 'goods.scss';
-@import 'homes.scss';
-@import 'interests.scss';
-@import 'movies.scss';
-@import 'notifications.scss';
-@import 'post_comments.scss';
-@import 'relationships.scss';
-@import 'reviews.scss';
+@import 'bads';
+@import 'goods';
+@import 'homes';
+@import 'interests';
+@import 'movies';
+@import 'notifications';
+@import 'post_comments';
+@import 'relationships';
+@import 'reviews';
 @import "bootstrap";
 @import 'font-awesome-sprockets';
 @import 'font-awesome';

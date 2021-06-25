@@ -2,7 +2,7 @@ class InterestsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @interests = current_user.interests
+    @interests = current_user.interests.page(params[:page]).per(5)
   end
 
   def create

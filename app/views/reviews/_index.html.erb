@@ -16,7 +16,7 @@
                   <br><%= review.user.name %></br>
                 <% end %>
               </td>
-              <td><%= review.body %></td>
+              <td width="450"><%= review.body %></td>
               <td>
                 <div id="star-rate-<%= review.id %>"></div>
                   <script>
@@ -52,4 +52,5 @@
       </table>
     </div>
   </div>
+  <%= paginate @reviews %>
 </div>

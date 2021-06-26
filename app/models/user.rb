@@ -7,11 +7,7 @@ class User < ApplicationRecord
 
   attachment :image, destroy: false
 
-  has_many :post_comments, dependent: :destroy
-
   has_many :reviews, dependent: :destroy
-  has_many :good_reviews, through: :goods, source: :review # has_many a, through: :b で、bを通したuser.aが使える。aをreviewsにするとhas_many :reviewsと被ってしまう為、sourceにモデル名を書いた上でaの名前を変えている
-  has_many :bad_reviews, through: :bads, source: :review # has_many a, through: :b で、bを通したuser.aが使える。aをreviewsにするとhas_many :reviewsと被ってしまう為、sourceにモデル名を書いた上でaの名前を変えている
 
   has_many :interests, dependent: :destroy
 

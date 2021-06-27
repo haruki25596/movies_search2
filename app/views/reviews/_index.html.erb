@@ -44,7 +44,7 @@
               </td>
               <td>
                 <% if current_user == review.user %>
-                  <%= link_to '削除', review, method: :delete, class:'badge badge-danger' %>
+                  <%= link_to '削除', review, method: :delete, class:'badge badge-danger', data: { confirm: '削除しますか？' } %>
                 <% end %>
               </td>
           <% end %>

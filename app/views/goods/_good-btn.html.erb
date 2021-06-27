@@ -1,18 +1,18 @@
-<% if @good %>
-  <%= link_to good_path(@good, :movie_id => movie_id),method: :delete, remote: true, class: "fas fa-thumbs-up" do %>
-    <%= user_goods.count %>
+<% if current_user.good?(movie_id) %>
+  <%= link_to good_path(movie_id: movie_id),method: :delete, remote: true, class: "fas fa-thumbs-up" do %>
+    <%= goods_count %>
   <% end %>
 <% else %>
-  <%= link_to goods_path(:movie_id => movie_id),method: :post, remote: true, class: "fas fa-thumbs-up" do %>
-    <%= user_goods.count %>
+  <%= link_to good_path(movie_id: movie_id),method: :post, remote: true, class: "fas fa-thumbs-up" do %>
+    <%= goods_count %>
   <% end %>
 <% end %>
-<% if @bad %>
-  <%= link_to bad_path(@bad, :movie_id => movie_id),method: :delete, remote: true, class: 'fas fa-thumbs-down' do %>
-    <%= user_bads.count %>
+<% if current_user.bad?(movie_id) %>
+  <%= link_to bad_path(movie_id: movie_id),method: :delete, remote: true, class: 'fas fa-thumbs-down' do %>
+    <%= bads_count %>
   <% end %>
 <% else %>
-  <%= link_to bads_path(:movie_id => movie_id),method: :post, remote: true,  class: 'fas fa-thumbs-down'  do %>
-    <%= user_bads.count %>
+  <%= link_to bad_path(movie_id: movie_id),method: :post, remote: true,  class: 'fas fa-thumbs-down'  do %>
+    <%= bads_count %>
   <% end %>
 <% end %>

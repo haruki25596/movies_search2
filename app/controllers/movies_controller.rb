@@ -22,18 +22,8 @@ class MoviesController < ApplicationController
   def show
     @movie = Tmdb::Movie.detail(params[:id])
     @reviews = Review.where(movie_id: params[:id]).page(params[:page]).per(8)
-    if user_signed_in?
-      @good = Good.find_by(user_id: current_user.id, movie_id: params[:id])
-      @bad = Bad.find_by(user_id: current_user.id, movie_id: params[:id])
-      @user_goods = Good.where(movie_id: params[:id])
-      @user_bads = Bad.where(movie_id: params[:id])
-      if Good.exists?(user_id: current_user.id, movie_id: @movie.id)
-        @good = Good.find_by(user_id: current_user.id, movie_id: @movie.id)
-      end
-      if Bad.exists?(user_id: current_user.id, movie_id: @movie.id)
-        @bad = Bad.find_by(user_id: current_user.id, movie_id: @movie.id)
-      end
-    end
+    @goods_count = Good.where(movie_id: params[:id]).count
+    @bads_count = Bad.where(movie_id: params[:id]).count
   end
 
   def movie_params

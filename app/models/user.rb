@@ -25,6 +25,14 @@ class User < ApplicationRecord
   validates :name, uniqueness: :true, length: { maximum: 10 },
                   format: { with: /\A[a-zA-Z0-9]+\z/, message: "を半角英数字で入力してください"}
 
+  def good?(movie_id)
+    goods.where(movie_id: movie_id).exists?
+  end
+
+  def bad?(movie_id)
+    bads.where(movie_id: movie_id).exists?
+  end
+
   #ユーザーをフォローする
   def follow(user_id)
     follower.create(followed_id: user_id)

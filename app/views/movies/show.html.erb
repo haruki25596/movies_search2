@@ -4,7 +4,7 @@
       <span><%= image_tag 'https://image.tmdb.org/t/p/w1280' + @movie['poster_path'],class: "card-img" %></sapn>
       <% if user_signed_in? %>
         <div id="good-bad">
-          <%= render partial: 'goods/good-btn', locals: {movie_id: @movie.id, user_bads: @user_bads, user_goods: @user_goods} %>
+          <%= render partial: 'goods/good-btn', locals: {goods_count: @goods_count,bads_count: @bads_count,  movie_id: @movie.id} %>
         </div>
       <% end %>
       <div class="row">

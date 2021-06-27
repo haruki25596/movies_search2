@@ -13,6 +13,11 @@ Rails.application.routes.draw do
 
   post 'follow/:id' => 'relationships#follow', as: 'follow' # フォローする
   post 'unfollow/:id' => 'relationships#unfollow', as: 'unfollow' # フォロー外す
+  post 'goods/:movie_id' => 'goods#create', as: 'good'
+  post 'bads/:movie_id' => 'bads#create', as: 'bad'
+  delete 'goods/:movie_id' => 'goods#destroy'
+  delete 'bads/:movie_id' => 'bads#destroy'
+
   get 'users/:id/follower'=> 'relationships#follower', as: 'follower_user'
   get 'users/:id/followed'=> 'relationships#followed', as: 'followed_user'
 
@@ -30,8 +35,7 @@ Rails.application.routes.draw do
     resource :post_comments, only: [:create, :destroy]
   end
 
-  resources :goods, only: [:create, :destroy]
-  resources :bads, only: [:create, :destroy]
+
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

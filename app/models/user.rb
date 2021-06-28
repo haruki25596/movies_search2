@@ -22,8 +22,9 @@ class User < ApplicationRecord
   has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy #自分からの通知
   has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy #相手からの通知
 
-  validates :name, uniqueness: :true, length: { maximum: 10 },
-                  format: { with: /\A[a-zA-Z0-9]+\z/, message: "を半角英数字で入力してください"}
+
+  validates :name,  presence: true, length: { maximum: 20 },
+                    format: { with: /\A[a-zA-Z0-9]+\z/, message: "を半角英数字で入力してください"}
 
   def good?(movie_id)
     goods.where(movie_id: movie_id).exists?

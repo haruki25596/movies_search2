@@ -1,6 +1,8 @@
 class Review < ApplicationRecord
 
   belongs_to :user
+  has_many :review_comments, dependent: :destroy
+  has_many :review_favorites, dependent: :destroy
   has_many :notifications, dependent: :destroy
 
 

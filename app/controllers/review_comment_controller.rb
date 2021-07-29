@@ -14,4 +14,10 @@ class ReviewCommentController < ApplicationController
     @review.create_notification_review_comment!(current_user, review.user_id, review.id)
     redirect_to new_review_review_comment_path(review)
   end
+  
+  def destroy
+    ReviewComment.find_by(id: params[:id], review_id: params[:review_id]).destroy
+    redirect_to new_review_review_comment_path(params[:review_id])
+  end
+  
 end

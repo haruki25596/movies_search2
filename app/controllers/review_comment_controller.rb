@@ -20,4 +20,10 @@ class ReviewCommentController < ApplicationController
     redirect_to new_review_review_comment_path(params[:review_id])
   end
   
+  private
+
+  def review_comment_params
+    params.require(:review_comment).permit(:comment, :user_id, :review_id)
+  end
+  
 end

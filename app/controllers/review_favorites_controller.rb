@@ -1,0 +1,4 @@
+class ReviewFavoritesController < ApplicationController
+  
+  
+end

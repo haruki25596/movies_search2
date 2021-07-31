@@ -37,17 +37,14 @@ class User < ApplicationRecord
     bads.where(movie_id: movie_id).exists?
   end
 
-  #ユーザーをフォローする
   def follow(user_id)
     follower.create(followed_id: user_id)
   end
 
-  #ユーザーのフォローを外す
   def unfollow(user_id)
     follower.find_by(followed_id: user_id).destroy
   end
 
-  #フォローしていればtrueを返す
   def following?(user)
     following_user.include?(user)
   end

@@ -70,7 +70,6 @@ gem 'bootstrap', '~> 4.5'
 gem 'jquery-rails'
 gem 'font-awesome-sass', '~> 5.12.0'
 gem 'themoviedb-api', '~> 1.3'
-gem 'ransack'
 
 gem 'dotenv-rails'
 group :production do
